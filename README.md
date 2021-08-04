@@ -13,4 +13,5 @@ The app includes:
 7. toggle-star of tweet (if the user is authenticated)
 
 To start the server on port 8000 in development mode: 
+
 npm start
