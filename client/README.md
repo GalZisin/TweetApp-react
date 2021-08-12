@@ -1,3 +1,13 @@
+TweetApp
+
+About the app:
+1. Authentication login/register/logout
+2. Home- show all tweets if authentica can post tweet remove user tweets reply star tweets
+3. Profile -show users data and tweets
+4. switch between Languages (en/ru)
+5. pull tweets in interval
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
