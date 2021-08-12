@@ -1,0 +1,19 @@
+{
+    "app_title": "приложения Твиттер",
+    "home_nav": "Домашняя страница",
+    "login_nav": "Авторизация",
+    "register_nav": "Регистрация",
+    "logout_nav": "выход",
+    "home_page_title": "Твиты",
+    "login_page_title": "Авторизация",
+    "register_page_title": "Регистрация",
+    "submit": "Отправить",
+    "name": "имя",
+    "email": "емайл",
+    "password": "пароль",
+    "post_tweet": "твитнуть",
+    "profile_page": "Страница профиля",
+    "username": "Имя пользователя",
+    "registration_date": "Дата регистрации",
+    "last_login_date": "Дата последнего входа в систему"
+}
