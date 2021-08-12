@@ -4,8 +4,8 @@ About the app:
 1. Authentication login/register/logout
 2. Home- show all tweets if authentica can post tweet remove user tweets reply star tweets
 3. Profile -show users data and tweets
-4. switch between Languages (en/ru)
-5. pull tweets in interval
+4. Switch between Languages (en/ru)
+5. Pull tweets in interval
 
 
 # Getting Started with Create React App
