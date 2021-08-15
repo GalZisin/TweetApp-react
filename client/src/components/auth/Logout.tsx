@@ -18,7 +18,7 @@ const Logout = () => {
     }
 
     useEffect(() => {
-        if (!isAuthenticated && !loading && !user) {
+        if (!isAuthenticated && !loading) {
             history.push('/');
         }
     }, [dispatch, isAuthenticated, loading, user]);

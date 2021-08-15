@@ -28,7 +28,6 @@ const ProfilePage = () => {
 
         dispatch(getMyTweets(params?.id))
 
-        console.log("user", user)
         if (loading === undefined) {
             dispatch(loadUser());
         }

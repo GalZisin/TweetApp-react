@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import image from '../images/dog_image.jpg'
 import DeleteIcon from '@material-ui/icons/Delete';
-// import ReplyIcon from '@material-ui/icons/Reply';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import moment from 'moment'
 import { ITweet, IUser } from '../types/types';
@@ -11,25 +10,19 @@ import { deleteTweet, getTweets, toggleStar } from '../redux/actions/tweetAction
 import { DELETE_TWEET_RESET } from '../redux/constants/tweetConstants';
 import { useConfirm } from "material-ui-confirm";
 import AddTweetModal from './auth/AddTweetModal';
-import { useParams } from 'react-router-dom';
 
-export interface IProps {
+export interface ITweetProps {
     tweetId?: string;
     tweetObj: ITweet | undefined;
     user: IUser | undefined;
 }
 
-interface IParams {
-    id: string;
-}
-const Card = ({ tweetObj, user, tweetId }: IProps) => {
+const Card = ({ tweetObj, user, tweetId }: ITweetProps) => {
 
     const dispatch = useDispatch();
     const confirm = useConfirm();
-    const params: IParams = useParams();
     const [starCounter, setStarCounter] = useState(tweetObj?.stars?.length!);
     const [userClicked, setUserClicked] = useState(!!tweetObj?.stars?.find((i) => i === user?.memberId));
-    const { tweets } = useSelector((state: RootState) => state.tweets)
     const { isDeleted, error } = useSelector((state: RootState) => state.tweet)
     const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth)
     const { tweets: updatedTweets, isStarToggled } = useSelector((state: RootState) => state.toggleStar)
@@ -65,9 +58,13 @@ const Card = ({ tweetObj, user, tweetId }: IProps) => {
 
             <div className="card_buttons">
                 <div className="card_icons">
-                    {(tweetObj?.memberId?._id || tweetObj?.memberId) === user?.memberId && isAuthenticated && <DeleteIcon className="deleteIcon" onClick={() => handleDelete(tweetId!)} />}
+                    {(tweetObj?.memberId?._id || tweetObj?.memberId) === user?.memberId
+                        && isAuthenticated
+                        && <DeleteIcon className="deleteIcon"
+                            onClick={() => handleDelete(tweetId!)} />}
                     {isAuthenticated && <AddTweetModal tweetId={tweetId} />}
-                    <span className="stars_counter">{starCounter}</span><StarRoundedIcon className="starIcon" onClick={() => handleToggleStar(tweetId!)} />
+                    <span className="stars_counter">{starCounter}</span><StarRoundedIcon className="starIcon"
+                        onClick={() => handleToggleStar(tweetId!)} />
                 </div>
             </div>
 
@@ -75,5 +72,3 @@ const Card = ({ tweetObj, user, tweetId }: IProps) => {
     )
 }
 export default Card;
-
-// {tweetObj?.stars?.length}

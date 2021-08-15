@@ -8,6 +8,8 @@ import { register } from '../../redux/actions/userActions';
 import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
 import Alert from '@material-ui/lab/Alert';
+import { useHistory } from 'react-router-dom'
+import { IAuthFunction } from '../../types/types';
 
 const validationSchema = yup.object({
     name: yup
@@ -28,6 +30,7 @@ const validationSchema = yup.object({
 const Register = () => {
     const { t } = useTranslation()
     const dispatch = useDispatch();
+    const history = useHistory();
     const [msg, setMsg] = useState(null);
     const { isAuthenticated, error } = useSelector((state: RootState) => state.auth)
 
@@ -38,18 +41,24 @@ const Register = () => {
             password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values: IAuthFunction) => {
             dispatch(register({ name: values.name, email: values.email, password: values.password }));
         },
     });
     useEffect(() => {
+
+        if (isAuthenticated) {
+            history.push('/');
+        } else {
+            history.push('/register');
+        }
         // Check for register error
         if (error !== '') {
             setMsg(error as any);
         } else {
             setMsg(null);
         }
-    }, [error]);
+    }, [dispatch, error, isAuthenticated]);
 
     return (
         <div className="container">

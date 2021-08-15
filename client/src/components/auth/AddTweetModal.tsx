@@ -4,15 +4,11 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ReplyIcon from '@material-ui/icons/Reply';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import { AnyCnameRecord } from 'dns';
 import { createNewTweet } from '../../redux/actions/tweetActions';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export interface IPropsModal {
     tweetId?: string;
@@ -39,7 +35,6 @@ export default function FormDialog({ tweetId }: IPropsModal) {
     }
     return (
         <Fragment>
-
             <ReplyIcon className="replayIcon" onClick={() => handleClickOpen(tweetId!)} />
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
                 <DialogTitle id="form-dialog-title">Reply to tweet</DialogTitle>
@@ -66,7 +61,6 @@ export default function FormDialog({ tweetId }: IPropsModal) {
                     </DialogActions>
                 </form>
             </Dialog>
-
         </Fragment>
     );
 }

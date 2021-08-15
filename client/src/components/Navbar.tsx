@@ -14,6 +14,9 @@ import { useTranslation, Trans } from 'react-i18next';
 import cookies from 'js-cookie'
 import i18next from 'i18next';
 import { languages } from '../App'
+import image from '../images/dog_image.jpg'
+import Avatar from '@material-ui/core/Avatar';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -28,9 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     auth: {
       flexGrow: 1,
     },
-    lang: {
-      // flexGrow: -1
-    }
   }),
 );
 
@@ -40,7 +40,6 @@ const Navbar = () => {
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   const { t } = useTranslation()
 
-  // const { t, i18n } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -50,11 +49,6 @@ const Navbar = () => {
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleProfile = () => {
     history.push(`/profile/${user?.memberId}`);
@@ -79,6 +73,18 @@ const Navbar = () => {
 
   }, [dispatch, isAuthenticated]);
 
+
+  const authIcon = (
+    <Fragment>
+      <Avatar alt="Remy Sharp" src={image} />
+    </Fragment>
+  )
+
+  const anonymousIcon = (
+    <Fragment>
+      <AccountCircle />
+    </Fragment>
+  )
   const authLinks = (
     <Fragment>
       <div className={classes.auth} >
@@ -89,7 +95,8 @@ const Navbar = () => {
           color="inherit"
           onClick={handleProfile}
         >
-          <AccountCircle />
+          {isAuthenticated ? authIcon : anonymousIcon}
+
         </IconButton>
         <Menu
           id="menu-appbar"
@@ -112,13 +119,14 @@ const Navbar = () => {
   );
   const lang = (
     <Fragment>
-      <div className={classes.lang}>
-        {languages.map(({ code, name, country_code }) => (
-          <button key={country_code} style={{ fontWeight: i18next.language === code ? 'bold' : 'normal' }} type="submit" onClick={() => i18next.changeLanguage(code)}>
-            {name}
-          </button>
-        ))}
-      </div>
+      {languages.map(({ code, name, country_code }) => (
+        <Button color="inherit" key={country_code}
+          style={{ fontWeight: i18next.language === code ? 'bold' : 'normal', color: i18next.language === code ? 'yellow' : 'white' }}
+          type="submit"
+          onClick={() => i18next.changeLanguage(code)}>
+          {name}
+        </Button>
+      ))}
     </Fragment>
   )
   const guestLinks = (
