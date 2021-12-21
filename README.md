@@ -1,2 +1,2 @@
-# CodeValue-TweetApp
+#TweetApp-react
 TweetApp
